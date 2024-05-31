@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [user] = useAuthState(auth);
@@ -13,7 +14,9 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="flex justify-between items-center px-5 md:px-10 lg:px-20 py-3 border-b-[0.5px]">
-      <div className="text-xl font-medium">MuscleUp💪</div>
+      <Link to="/">
+        <div className="text-xl font-medium">MuscleUp💪</div>
+      </Link>
       <div className="flex items-center space-x-4">
         {user && (
           <DropdownMenu.Root>

@@ -35,7 +35,7 @@ const App: React.FC = () => {
           />
           <Route
             path="/advice"
-            element={user ? <Advice /> : <Navigate to="/login" />}
+            element={<Advice />}
           />
         </Routes>
       </Router>

@@ -5,6 +5,7 @@ import { cors } from "hono/cors";
 const app = new Hono<{
   Bindings: {
     GEMINI_API_KEY: string;
+    GROQ_API_KEY: string;
   };
 }>();
 
@@ -40,8 +41,8 @@ app.post("/gen", async (c) => {
 
     const response = await generateRecommendations(
       { age, experience, schedule, hours, goal, diet, height, weight },
-      "google",
-      c.env.GEMINI_API_KEY
+      "groq",
+      c.env.GROQ_API_KEY
     );
 
     return c.json({

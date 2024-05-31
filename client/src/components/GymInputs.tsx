@@ -46,12 +46,13 @@ const GymInputs: React.FC = () => {
       );
 
       console.log("Success:", response.data);
-      setResponseData(response.data);
+      setResponseData(response.data); 
       navigate("/advice");
     } catch (error) {
       console.error("There was an error!", error);
     }
   };
+
 
   return (
     <div className="max-w-md mx-auto p-6 rounded-md shadow-md">

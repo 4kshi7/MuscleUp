@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const responseDataAtom = atom({
-  key: 'responseData', 
-  default: "", 
+  key: "responseData",
+  default: { data: "" },
 });
