@@ -3,13 +3,15 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     signOut(auth);
+    navigate("/");
   };
 
   return (
