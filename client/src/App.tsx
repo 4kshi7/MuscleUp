@@ -13,30 +13,33 @@ import Home from "./pages/Home";
 import SignUp from "./pages/Signup";
 import { RecoilRoot } from "recoil";
 import Advice from "./pages/Advice";
+import { Landing } from "./pages/Landing";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App: React.FC = () => {
   const [user] = useAuthState(auth);
 
   return (
     <RecoilRoot>
+      <ToastContainer />
+
       <Router>
         <Routes>
+          <Route path="/" element={<Landing />} />
           <Route
             path="/login"
-            element={user ? <Navigate to="/" /> : <Login />}
+            element={user ? <Navigate to="/dashboard" /> : <Login />}
           />
           <Route
             path="/sign-up"
-            element={user ? <Navigate to="/" /> : <SignUp />}
+            element={user ? <Navigate to="/dashboard" /> : <SignUp />}
           />
           <Route
-            path="/"
+            path="/dashboard"
             element={user ? <Home /> : <Navigate to="/login" />}
           />
-          <Route
-            path="/advice"
-            element={<Advice />}
-          />
+          <Route path="/advice" element={<Advice />} />
         </Routes>
       </Router>
     </RecoilRoot>

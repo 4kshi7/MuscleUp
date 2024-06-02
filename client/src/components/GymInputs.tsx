@@ -3,6 +3,19 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { responseDataAtom } from "../atoms/recoil";
+import { z } from "zod";
+import { toast } from "react-toastify";
+
+const formDataSchema = z.object({
+  age: z.number().int().min(12).max(100),
+  height: z.number().int().max(230),
+  weight: z.number().int().max(200),
+  experience: z.string().min(1),
+  schedule: z.string().min(1),
+  hours: z.string().min(1),
+  goal: z.string().min(1),
+  diet: z.string().min(1),
+});
 
 const GymInputs: React.FC = () => {
   const [age, setAge] = useState<number | null>(null);
@@ -13,27 +26,34 @@ const GymInputs: React.FC = () => {
   const [diet, setDiet] = useState<string>("");
   const [height, setHeight] = useState<number | null>(null);
   const [weight, setWeight] = useState<number | null>(null);
+
+  const [loading, setLoading] = useState<boolean>(false);
   const setResponseData = useSetRecoilState(responseDataAtom);
   const navigate = useNavigate();
 
   const inputClasses =
-    "mt-1 px-4 py-2 w-[75%] sm:w-3/4 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 bg-transparent";
+    "mt-1 px-4 py-2 w-[70%] md:w-[75%] md:w-3/4 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 bg-transparent";
   const labelClasses = "block w-fit sm:w-1/4 text-sm font-medium";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = {
-      age,
-      experience,
-      schedule,
-      hours,
-      goal,
-      diet,
-      height,
-      weight,
-    };
+    setLoading(true);
 
     try {
+      // Validate form data against schema
+      const formData = {
+        age,
+        height,
+        weight,
+        experience,
+        schedule,
+        hours,
+        goal,
+        diet,
+      };
+      formDataSchema.parse(formData); // Throws error if validation fails
+
+      // If validation succeeds, proceed with form submission
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}`,
         formData,
@@ -43,12 +63,12 @@ const GymInputs: React.FC = () => {
           },
         }
       );
-
-      console.log("Success:", response.data);
       setResponseData(response.data);
       navigate("/advice");
-    } catch (error) {
-      console.error("There was an error!", error);
+    } catch (error: any) {
+      toast.error("Please make sure you entered valid data");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -191,9 +211,9 @@ const GymInputs: React.FC = () => {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="py-2 w-[24vw] md:w-[8vw] bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Submit
+            {loading ? <Spinner /> : "Submit"}
           </button>
         </div>
       </form>
@@ -202,3 +222,20 @@ const GymInputs: React.FC = () => {
 };
 
 export default GymInputs;
+
+export function Spinner() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      className="w-7 h-7 animate-spin mx-auto"
+      viewBox="0 0 16 16"
+    >
+      <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+      <path
+        fillRule="evenodd"
+        d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"
+      />
+    </svg>
+  );
+}

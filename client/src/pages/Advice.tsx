@@ -14,7 +14,7 @@ const Advice: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="px-5 md:px-10 lg:px-20 max-w-4xl h-screen mt-2 mx-auto">
+      <div className="px-5 md:px-10 lg:px-20 max-w-6xl h-screen mt-2 mx-auto">
         <div className="">
           <ReactQuill
             value={content.data}
