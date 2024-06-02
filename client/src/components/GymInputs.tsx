@@ -32,7 +32,7 @@ const GymInputs: React.FC = () => {
   const navigate = useNavigate();
 
   const inputClasses =
-    "mt-1 px-4 py-2 w-[70%] md:w-[75%] md:w-3/4 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 bg-transparent";
+    "mt-1 px-4 py-2 w-[68%] md:w-[75%] md:w-3/4 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 bg-transparent";
   const labelClasses = "block w-fit sm:w-1/4 text-sm font-medium";
 
   const handleSubmit = async (e: React.FormEvent) => {

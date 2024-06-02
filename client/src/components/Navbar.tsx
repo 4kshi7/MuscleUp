@@ -15,9 +15,11 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-between items-center px-5 md:px-10 lg:px-20 py-2 border-b-[0.5px] h-18">
-      <Link to={user? "/dashboard" : "/"}>
-        <div className="text-xl font-medium text-gray-500 hover:text-black duration-150">MuscleUp💪</div>
+    <div className="flex justify-between items-center px-5 md:px-10 lg:px-20 py-2 h-18 backdrop-blur-sm bg-transparent">
+      <Link to={user ? "/dashboard" : "/"}>
+        <div className="text-xl font-medium hover:scale-105 duration-150">
+          MuscleUp💪
+        </div>
       </Link>
       <div className="flex items-center space-x-4">
         {user ? (
@@ -41,7 +43,9 @@ const Navbar: React.FC = () => {
           </DropdownMenu.Root>
         ) : (
           <Link to="/login">
-            <button className="text-black hover:scale-105 duration-150">Login</button>
+            <button className="text-black hover:scale-105 duration-150">
+              Login
+            </button>
           </Link>
         )}
       </div>

@@ -21,6 +21,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-5">
+      <div className="absolute top-[15%] right-20 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-blue-300 rounded-full opacity-30 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
       <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
         <h2 className="text-2xl mb-4">Login</h2>
         <form onSubmit={handleLogin} className="space-y-4">
