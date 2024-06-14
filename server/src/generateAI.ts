@@ -31,6 +31,21 @@ async function groqGenerate(apiKey: string, clientData: any) {
   return chatCompletion.choices[0].message.content;
 }
 
+async function handleChat(apiKey: string, message: string) {
+  const groq = new Groq({ apiKey });
+  const chatCompletion = await groq.chat.completions.create({
+    messages: [
+      {
+        role: "user",
+        content: message,
+      },
+    ],
+    model: "mixtral-8x7b-32768",
+  });
+
+  return chatCompletion.choices[0].message.content;
+}
+
 export async function generateRecommendations(
   clientData: any,
   model: string,
@@ -45,4 +60,21 @@ export async function generateRecommendations(
     return response;
   }
   return "Model not supported";
+}
+
+export async function handleChatMessage(apiKey: string, message: string) {
+  const isRelatedToGym = /gym|exercise|workout|health|diet|nutrition|hi|hello/i.test(
+    message
+  );
+
+  if (!isRelatedToGym) {
+    return "I am sorry, I can only help you with queries related to gym, exercise, or health. Please ask a relevant question.";
+  }
+
+  const response = await handleChat(apiKey, message);
+  return response;
+}
+
+export function getInitialGreeting() {
+  return "Hello! How can I assist you with your gym, exercise, or diet queries today?";
 }

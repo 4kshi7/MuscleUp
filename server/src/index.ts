@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { generateRecommendations } from "./generateAI";
+import { generateRecommendations, getInitialGreeting, handleChatMessage } from "./generateAI";
 import { cors } from "hono/cors";
 
 const app = new Hono<{
@@ -44,6 +44,29 @@ app.post("/gen", async (c) => {
       "groq",
       c.env.GROQ_API_KEY
     );
+
+    return c.json({
+      data: response,
+    });
+  } catch (err) {
+    c.status(403);
+    return c.json({ error: `Something went wrong: ${err}` });
+  }
+});
+
+app.post("/chat", async (c) => {
+  try {
+    const body = await c.req.json();
+    const { message } = body;
+
+    if (!message) {
+      const greeting = getInitialGreeting();
+      return c.json({
+        data: greeting,
+      });
+    }
+
+    const response = await handleChatMessage(c.env.GROQ_API_KEY, message);
 
     return c.json({
       data: response,
