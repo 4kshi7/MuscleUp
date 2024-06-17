@@ -47,9 +47,8 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="absolute top-36 -left-10 md:left-20 md:w-[80vh] md:h-[80vh] w-[30vh] h-[30vh] bg-purple-300 rounded-full opacity-30 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="bg-white p-8 rounded shadow-2xl w-full max-w-md">
         <h2 className="text-2xl mb-4">Sign Up</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

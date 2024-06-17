@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
           <DropdownMenu.Root>
             <DropdownMenu.Trigger className="flex items-center space-x-2 cursor-pointer focus:outline-none">
               <img
-                src={user.photoURL || "https://via.placeholder.com/40"}
+                src={user.photoURL || "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"}
                 alt="User Profile"
                 className="w-10 h-10 rounded-full"
               />

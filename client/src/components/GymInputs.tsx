@@ -68,7 +68,7 @@ const GymInputs: React.FC = () => {
   };
 
   return (
-    <div className="p-6 mx-auto rounded-xl shadow-md">
+    <div className="p-6 mx-auto rounded-xl shadow-xl bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 backdrop-blur-sm">
       <h2 className="text-2xl font-semibold mb-6 text-center">
         Tell your goals
       </h2>
@@ -81,7 +81,7 @@ const GymInputs: React.FC = () => {
             <button
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
-                goal === "bulk" ? "bg-indigo-500 text-white" : "bg-white"
+                goal === "bulk" ? "bg-indigo-500/50 text-black" : "bg-white/60"
               }`}
               onClick={() => setGoal("bulk")}
             >
@@ -91,7 +91,7 @@ const GymInputs: React.FC = () => {
             <button
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
-                goal === "cutting" ? "bg-indigo-500 text-white" : "bg-white"
+                goal === "cutting" ? "bg-indigo-500/50 text-black" : "bg-white/60"
               }`}
               onClick={() => setGoal("cutting")}
             >
@@ -101,7 +101,7 @@ const GymInputs: React.FC = () => {
             <button
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
-                goal === "healthy" ? "bg-indigo-500 text-white" : "bg-white"
+                goal === "healthy" ? "bg-indigo-500/50 text-black" : "bg-white/60"
               }`}
               onClick={() => setGoal("healthy")}
             >
@@ -120,8 +120,8 @@ const GymInputs: React.FC = () => {
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
                 experience === "beginner"
-                  ? "bg-indigo-500 text-white"
-                  : "bg-white"
+                  ? "bg-indigo-500/50 text-black"
+                  : "bg-white/60"
               }`}
               onClick={() => setExperience("beginner")}
             >
@@ -132,8 +132,8 @@ const GymInputs: React.FC = () => {
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
                 experience === "intermediate"
-                  ? "bg-indigo-500 text-white"
-                  : "bg-white"
+                  ? "bg-indigo-500/50 text-black"
+                  : "bg-white/60"
               }`}
               onClick={() => setExperience("intermediate")}
             >
@@ -144,8 +144,8 @@ const GymInputs: React.FC = () => {
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
                 experience === "experienced"
-                  ? "bg-indigo-500 text-white"
-                  : "bg-white"
+                  ? "bg-indigo-500/50 text-black"
+                  : "bg-white/60"
               }`}
               onClick={() => setExperience("experienced")}
             >
