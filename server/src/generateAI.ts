@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import Groq from "groq-sdk";
 
-const PROMPT_PREFIX = `Write a detailed analysis on these factors to achieve desired goals for a person living in India, define suitable workout split and diet plan in proper points and styling in html `;
+const PROMPT_PREFIX = `Write a detailed analysis on these factors to achieve desired goals for a person based on their gender living in India, define suitable workout split and diet plan in proper points and styling in html `;
 
 async function googleGenerate(apiKey: string, clientData: any) {
   const genAI = new GoogleGenerativeAI(apiKey);

@@ -15,6 +15,7 @@ const formDataSchema = z.object({
   hours: z.string().min(1),
   goal: z.string().min(1),
   diet: z.string().min(1),
+  gender: z.string().min(1),
 });
 
 const GymInputs: React.FC = () => {
@@ -22,6 +23,7 @@ const GymInputs: React.FC = () => {
   const [experience, setExperience] = useState<string>("");
   const [schedule, setSchedule] = useState<string>("");
   const [hours, setHours] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
   const [goal, setGoal] = useState<string>("");
   const [diet, setDiet] = useState<string>("");
   const [height, setHeight] = useState<number | null>(null);
@@ -40,15 +42,14 @@ const GymInputs: React.FC = () => {
         age,
         height,
         weight,
+        gender,
         experience,
         schedule,
         hours,
         goal,
         diet,
       };
-      formDataSchema.parse(formData); // Throws error if validation fails
-
-      // If validation succeeds, proceed with form submission
+      formDataSchema.parse(formData);
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}`,
         formData,
@@ -61,7 +62,7 @@ const GymInputs: React.FC = () => {
       setResponseData(response.data);
       navigate("/advice");
     } catch (error: any) {
-      toast.error("Please make sure you entered valid data");
+      toast.error(error.errors[0].message);
     } finally {
       setLoading(false);
     }
@@ -81,7 +82,7 @@ const GymInputs: React.FC = () => {
             <button
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
-                goal === "bulk" ? "bg-indigo-500/50 text-black" : "bg-white/60"
+                goal === "bulk" ? "bg-indigo-400/50 text-black" : "bg-white/60"
               }`}
               onClick={() => setGoal("bulk")}
             >
@@ -91,7 +92,9 @@ const GymInputs: React.FC = () => {
             <button
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
-                goal === "cutting" ? "bg-indigo-500/50 text-black" : "bg-white/60"
+                goal === "cutting"
+                  ? "bg-indigo-400/50 text-black"
+                  : "bg-white/60"
               }`}
               onClick={() => setGoal("cutting")}
             >
@@ -101,7 +104,9 @@ const GymInputs: React.FC = () => {
             <button
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
-                goal === "healthy" ? "bg-indigo-500/50 text-black" : "bg-white/60"
+                goal === "healthy"
+                  ? "bg-indigo-400/50 text-black"
+                  : "bg-white/60"
               }`}
               onClick={() => setGoal("healthy")}
             >
@@ -120,7 +125,7 @@ const GymInputs: React.FC = () => {
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
                 experience === "beginner"
-                  ? "bg-indigo-500/50 text-black"
+                  ? "bg-indigo-400/50 text-black"
                   : "bg-white/60"
               }`}
               onClick={() => setExperience("beginner")}
@@ -132,7 +137,7 @@ const GymInputs: React.FC = () => {
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
                 experience === "intermediate"
-                  ? "bg-indigo-500/50 text-black"
+                  ? "bg-indigo-400/50 text-black"
                   : "bg-white/60"
               }`}
               onClick={() => setExperience("intermediate")}
@@ -144,13 +149,42 @@ const GymInputs: React.FC = () => {
               type="button"
               className={`flex flex-col items-center justify-center p-4 border rounded-md ${
                 experience === "experienced"
-                  ? "bg-indigo-500/50 text-black"
+                  ? "bg-indigo-400/50 text-black"
                   : "bg-white/60"
               }`}
               onClick={() => setExperience("experienced")}
             >
               <span className="text-2xl">😎</span>
               <span className="text-sm">Experienced</span>
+            </button>
+          </div>
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold mb-2">My Gender is ...</h3>
+          <div className="grid grid-cols-2 gap-4">
+            <button
+              type="button"
+              className={`flex flex-col items-center justify-center p-4 border rounded-md ${
+                gender === "Male"
+                  ? "bg-indigo-400/50 text-black"
+                  : "bg-white/60"
+              }`}
+              onClick={() => setGender("Male")}
+            >
+              <span className="text-2xl">🚹</span>
+              <span className="text-sm">Male</span>
+            </button>
+            <button
+              type="button"
+              className={`flex flex-col items-center justify-center p-4 border rounded-md ${
+                gender === "Female"
+                  ? "bg-indigo-400/50 text-black"
+                  : "bg-white/60"
+              }`}
+              onClick={() => setGender("Female")}
+            >
+              <span className="text-2xl">🚺</span>
+              <span className="text-sm">Female</span>
             </button>
           </div>
         </div>

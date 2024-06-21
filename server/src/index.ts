@@ -1,5 +1,9 @@
 import { Hono } from "hono";
-import { generateRecommendations, getInitialGreeting, handleChatMessage } from "./generateAI";
+import {
+  generateRecommendations,
+  getInitialGreeting,
+  handleChatMessage,
+} from "./generateAI";
 import { cors } from "hono/cors";
 
 const app = new Hono<{
@@ -23,8 +27,17 @@ app.post("/gen", async (c) => {
     }
 
     const body = await c.req.json();
-    const { age, experience, schedule, hours, goal, diet, height, weight } =
-      body;
+    const {
+      age,
+      gender,
+      experience,
+      schedule,
+      hours,
+      goal,
+      diet,
+      height,
+      weight,
+    } = body;
 
     if (
       !age ||
@@ -34,13 +47,14 @@ app.post("/gen", async (c) => {
       !goal ||
       !diet ||
       !height ||
-      !weight
+      !weight ||
+      !gender
     ) {
       return c.status(400);
     }
 
     const response = await generateRecommendations(
-      { age, experience, schedule, hours, goal, diet, height, weight },
+      { age, experience, schedule, hours, goal, diet, height, weight, gender },
       "groq",
       c.env.GROQ_API_KEY
     );
