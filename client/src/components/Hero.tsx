@@ -12,7 +12,7 @@ export const Hero = () => {
     <>
       <section
         id="home"
-        className="flex flex-col items-center justify-center min-h-screen text-center "
+        className="flex flex-col items-center justify-center  text-center h-[85vh]"
       >
         <motion.div
           className="p-10 rounded-md"
@@ -27,13 +27,13 @@ export const Hero = () => {
             Transform Your Workout and Diet with AI
           </p>
 
-          <div className="absolute top-36 -left-10 md:left-20 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-purple-300 rounded-full opacity-40 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+          <div className="absolute top-36 -left-10 md:left-20 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-purple-200 rounded-full opacity-40 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
 
-          <div className="absolute top-[80%] right-10 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-orange-300 rounded-full opacity-30 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+          <div className="absolute top-[80%] right-10 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-orange-200 rounded-full opacity-30 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
 
-          <div className="absolute top-[150%] -left-10 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-blue-300 rounded-full opacity-30 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+          <div className="absolute top-[150%] -left-10 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-blue-200 rounded-full opacity-30 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
 
-          <div className="absolute top-[250%] right-60 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-red-300 rounded-full opacity-30 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+          <div className="absolute top-[250%] right-60 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-red-200 rounded-full opacity-30 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
 
           <motion.button
             className="mt-6 px-6 py-3 bg-gray-800 text-white rounded-full hover:bg-gray-700"
