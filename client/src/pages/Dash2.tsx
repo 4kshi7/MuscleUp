@@ -81,7 +81,7 @@ export const Dash2 = () => {
     {
       id: "LGBTQ individual",
       title: "Others",
-      icon: "🏳️‍🌈",
+      icon: "💭",
       description: "",
     },
   ];
