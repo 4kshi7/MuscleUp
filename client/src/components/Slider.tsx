@@ -24,7 +24,7 @@ const Slider: React.FC<SliderProps> = ({ label, value, min, max, onChange, title
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-xl">
+    <div className="max-w-3xl mx-auto py-3 px-6 bg-white rounded-lg shadow-xl">
       <h2 className="text-2xl font-bold mb-4 flex items-center">
         {label}
       </h2>
@@ -54,7 +54,7 @@ const Slider: React.FC<SliderProps> = ({ label, value, min, max, onChange, title
           onChange={handleSliderChange}
           className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
         />
-        <div className="absolute -bottom-6 left-0 right-0 text-center text-sm text-gray-600">
+        <div className="text-center text-sm text-gray-600">
            {units} {title}
         </div>
       </div>

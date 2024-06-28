@@ -1,20 +1,20 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import Groq from "groq-sdk";
 
-const PROMPT_PREFIX = `Write a detailed analysis on these factors to achieve desired goals for a person based on their gender living in India, define suitable workout split and diet plan in proper points and styling in html `;
+const PROMPT_PREFIX = `You are a professional gym trainer. Analyze the following factors to achieve the desired goals for a person based on their gender living in India. Provide a detailed workout split and a diet plan with nutritional details, formatted in HTML using appropriate tags such as <h1>, <h2>, <ul>, and <li>. Ensure the response is neatly structured with clear headings, bullet points, and a suggestion at the end.
 
-async function googleGenerate(apiKey: string, clientData: any) {
-  const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+Factors to consider:
+1. Age
+2. Height, Weight & Gender
+3. Experience
+4. Schedule
+5. Hours
+6. Goal
+7. Diet
 
-  const prompt = `${PROMPT_PREFIX}${JSON.stringify(clientData, null, 2)}`;
+The diet plan should include nutritional details such as calories, protein, carbohydrates, and fats.
 
-  const result = await model.generateContent(prompt);
-  const response = result.response;
-  const text = response.text();
-
-  return text;
-}
+Please provide the response in HTML format.
+`;
 
 async function groqGenerate(apiKey: string, clientData: any) {
   const groq = new Groq({ apiKey });
@@ -51,10 +51,6 @@ export async function generateRecommendations(
   model: string,
   apiKey: string
 ) {
-  if (model === "google") {
-    const response = await googleGenerate(apiKey, clientData);
-    return response;
-  }
   if (model === "groq") {
     const response = await groqGenerate(apiKey, clientData);
     return response;
@@ -63,9 +59,8 @@ export async function generateRecommendations(
 }
 
 export async function handleChatMessage(apiKey: string, message: string) {
-  const isRelatedToGym = /gym|exercise|workout|health|diet|nutrition|hi|hello/i.test(
-    message
-  );
+  const isRelatedToGym =
+    /gym|exercise|workout|health|diet|nutrition|hi|hello/i.test(message);
 
   if (!isRelatedToGym) {
     return "I am sorry, I can only help you with queries related to gym, exercise, or health. Please ask a relevant question.";

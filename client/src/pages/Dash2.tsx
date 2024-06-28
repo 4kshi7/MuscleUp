@@ -244,7 +244,7 @@ export const Dash2 = () => {
             min={30}
             max={200}
             onChange={handleWeightChange}
-            units="kgs"
+            units="kilograms"
             title="weight"
           />
           <InputSelector

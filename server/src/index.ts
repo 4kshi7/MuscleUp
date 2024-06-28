@@ -1,10 +1,28 @@
-import { Hono } from "hono";
+import { Hono, Context, Next } from "hono";
 import {
   generateRecommendations,
   getInitialGreeting,
   handleChatMessage,
 } from "./generateAI";
 import { cors } from "hono/cors";
+import {
+  rateLimit,
+  RateLimitBinding,
+  RateLimitKeyFunc,
+} from "@elithrar/workers-hono-rate-limit";
+
+type Bindings = {
+  RATE_LIMITER: RateLimitBinding;
+};
+
+const getKey: RateLimitKeyFunc = (c: Context): string => {
+  // Rate limit on each API token by returning it as the key for our
+  // middleware to use.
+  return c.req.header("Authorization") || "";
+};
+const rateLimiter = async (c: Context, next: Next) => {
+  return await rateLimit(c.env.RATE_LIMITER, getKey)(c, next);
+};
 
 const app = new Hono<{
   Bindings: {
@@ -13,19 +31,13 @@ const app = new Hono<{
   };
 }>();
 
-app.use("/*", cors());
+app.use("/*", rateLimiter, cors());
 app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
 
 app.post("/gen", async (c) => {
   try {
-    if (!c.env.GEMINI_API_KEY) {
-      return c.json({
-        error: "This feature is disabled.",
-      });
-    }
-
     const body = await c.req.json();
     const {
       age,

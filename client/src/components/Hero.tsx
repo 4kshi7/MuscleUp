@@ -18,7 +18,7 @@ export const Hero = () => {
           className="p-10 rounded-md"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1.5 }}
         >
           <h1 className="text-4xl sm:text-6xl font-semibold">
             AI Powered Gym Guide
@@ -26,14 +26,6 @@ export const Hero = () => {
           <p className="text-lg sm:text-2xl mt-4">
             Transform Your Workout and Diet with AI
           </p>
-
-          <div className="absolute top-36 -left-10 md:left-20 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-purple-200 rounded-full opacity-40 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
-
-          <div className="absolute top-[80%] right-10 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-orange-200 rounded-full opacity-30 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
-
-          <div className="absolute top-[150%] -left-10 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-blue-200 rounded-full opacity-30 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
-
-          <div className="absolute top-[250%] right-60 md:w-[72vh] md:h-[72vh] w-[30vh] h-[30vh] bg-red-200 rounded-full opacity-30 mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
 
           <motion.button
             className="mt-6 px-6 py-3 bg-gray-800 text-white rounded-full hover:bg-gray-700"
@@ -53,7 +45,7 @@ export const Hero = () => {
             className="text-3xl sm:text-4xl font-bold"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 1 }}
           >
             Our Features
           </motion.h2>
@@ -80,7 +72,7 @@ export const Hero = () => {
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-200/30 p-6 m-4 rounded-md shadow-md w-full sm:w-1/3"
+                className="bg-white/30 backdrop-blur-sm p-6 m-4 rounded-md shadow-xl w-full sm:w-1/3"
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="text-center mb-4">{feature.icon}</div>
@@ -126,7 +118,7 @@ export const Hero = () => {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-200/40 backdrop-blur-sm p-6 m-4 rounded-md shadow-md w-full sm:w-1/3"
+                className="bg-white/30 backdrop-blur-sm p-6 m-4 rounded-md shadow-xl w-full sm:w-1/3"
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="text-3xl font-bold mb-4">{item.step}</div>

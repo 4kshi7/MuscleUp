@@ -26,16 +26,19 @@ const Navbar: React.FC = () => {
           <DropdownMenu.Root>
             <DropdownMenu.Trigger className="flex items-center space-x-2 cursor-pointer focus:outline-none">
               <img
-                src={user.photoURL || "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"}
+                src={
+                  user.photoURL ||
+                  "https://t3.ftcdn.net/jpg/03/58/90/78/360_F_358907879_Vdu96gF4XVhjCZxN2kCG0THTsSQi8IhT.jpg"
+                }
                 alt="User Profile"
                 className="w-10 h-10 rounded-full"
               />
             </DropdownMenu.Trigger>
 
-            <DropdownMenu.Content className="bg-white text-black rounded shadow-md p-2 mt-2 w-30 absolute right-0">
+            <DropdownMenu.Content className=" rounded shadow-md p-2 mt-2 absolute w-30 right-0">
               <DropdownMenu.Item
                 onClick={handleLogout}
-                className="cursor-pointer p-2 hover:scale-105 duration-150 rounded"
+                className="cursor-pointer p-2 text-white duration-150 rounded bg-red-500 hover:bg-red-700"
               >
                 Logout
               </DropdownMenu.Item>
